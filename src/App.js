@@ -2,15 +2,16 @@ import React from 'react';
 import logo from './logo.svg';
 import FormMaker from './formMaker';
 import './App.css';
+import './styles/bootstrap.css';
 
 function App() {
   var options = [{
-    value: "no",
-    text: "No"
+    value: "M",
+    text: "Male"
   },
   {
-    value: "yes",
-    text: "Yeah"
+    value: "F",
+    text: "Female"
   }
   ]
 
@@ -18,20 +19,65 @@ function App() {
   var data = {
     fields: [{
       type: 'input',
-      name: 'kene'
+      name: 'names',
+      inputLabel: "Names",
+      handleData: handleData,
     },
     {
       type: 'select',
       name: 'choice',
+      inputLabel: "Gender",
       extras: {
         options: options
       }
+    },
+    {
+      type: 'checkboxes',
+      name: 'rm',
+      checkboxesLabel: "Languages:",
+      checkboxes: [
+        {
+          inputLabel: "Java",
+        },
+        {
+          inputLabel: "Javascript",
+        },
+        {
+          inputLabel: "Python",
+        }
+      ]
+    },
+    {
+      type: 'radios',
+      name: 'choice',
+      radiosLabel: 'Are you good: ',
+      radios: [
+        {
+          inputLabel: "Yes",
+        },
+        {
+          inputLabel: "No",
+        }
+      ]
     }
+
+
     ]
   }
+  var datas = [];
 
+  function handleData(name, value){
+    var d = {
+      name: name,
+      value: value
+    }
+    datas.push(d);
+    console.log(datas);
+  }
   return (
-    <FormMaker fields={data} />
+    <div className="col-md-10 offset-1">
+      <FormMaker fields={data} />
+    </div>
   );
 }
 

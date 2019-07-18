@@ -2,9 +2,13 @@ import React from 'react';
 
 class Select extends React.Component {
     render() {
-        return (<select name={this.props.name} >
-            {this.props.options.map(option => <option value={option.value}>{option.text}</option>)}
-        </select>
+        return (
+            <div className="form-group">
+                <label>{this.props.inputLabel}</label>
+                <select name={this.props.name} className="form-control">
+                    {this.props.options.map(option => <option value={option.value}>{option.text}</option>)}
+                </select>
+            </div>
         )
     }
 }
