@@ -1,8 +1,14 @@
 import React from 'react';
 
 class Button  extends React.Component{
+
+    submit = (e)=>{
+        e.preventDefault();
+        this.props.data.onClickFunction();
+    }
+
     render(){
-        return <button type={this.props.buttonType} onClick={this.props.onClickFunction}>{this.props.nameLabel}</button>
+        return <button className="btn btn-block btn-primary" type={this.props.data.buttonType} onClick={this.submit}>{this.props.data.nameLabel}</button>
     }
 }
 
