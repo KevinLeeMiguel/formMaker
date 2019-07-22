@@ -1,6 +1,11 @@
 import React from 'react';
 
 class Radio extends React.Component {
+
+    GetValue = (e)=>{
+        console.log(e.target.value);
+        this.props.handleData(this.props.data.name,e.target.value);
+    }
     render() {
 
         return (
@@ -12,7 +17,7 @@ class Radio extends React.Component {
                             {
                                 this.props.data.radios.map(radio =>
                                     <div className="form-check">
-                                        <input type="radio" className="form-check-input" name={this.props.data.name} checked={radio.checked} />
+                                        <input type="radio" onBlur={this.GetValue} className="form-check-input" value={radio.value} name={this.props.data.name} checked={radio.checked} />
                                         <label className="form-check-label">{radio.inputLabel}</label>
                                     </div>
                                 )

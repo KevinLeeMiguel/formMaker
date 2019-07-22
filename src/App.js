@@ -8,51 +8,25 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      names: '',
-      rm: '',
-      choice: '',
-      choices: ''
+      // names: '',
+      // rm: '',
+      // choice: '',
+      // choices: ''
 
     }
   }
 
 
   handleData = (name, value) => {
-    switch (name) {
-      case "names":
-        this.setState({
-          names: value
-        });
 
-        break;
 
-      case "choice":
-        this.setState({
-          choice: value
-        });
+    this.setState({[name]: value}, ()=>{
+      console.log(this.state);
+    });
+    
 
-        break;
+ 
 
-      case "choices":
-        this.setState({
-          choices: value
-        });
-
-        break;
-      case "rm":
-        this.setState({
-          rm: value
-        });
-
-        break;
-
-      default:
-        break;
-    }
-
-    // console.log(this.state.names);
-    // console.log(this.state.choices);
-    // console.log(this.state.choice);
   }
   render() {
 
@@ -87,6 +61,7 @@ class App extends React.Component {
         type: 'checkboxes',
         name: 'rm',
         checkboxesLabel: "Languages:",
+        handleData: this.handleData,
         checkboxes: [
           {
             inputLabel: "Java",
@@ -103,12 +78,15 @@ class App extends React.Component {
         type: 'radios',
         name: 'choice',
         radiosLabel: 'Are you good: ',
+        handleData: this.handleData,
         radios: [
           {
             inputLabel: "Yes",
+            value:'yes'
           },
           {
             inputLabel: "No",
+            value:'no'
           }
         ]
       }

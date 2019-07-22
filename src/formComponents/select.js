@@ -3,7 +3,7 @@ import React from 'react';
 class Select extends React.Component {
 
     GetValue = (e)=>{
-        console.log(e.target.value);
+        // console.log(e.target.value);
         this.props.handleData(this.props.name,e.target.value);
     }
     render() {
