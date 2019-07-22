@@ -4,81 +4,121 @@ import FormMaker from './formMaker';
 import './App.css';
 import './styles/bootstrap.css';
 
-function App() {
-  var options = [{
-    value: "M",
-    text: "Male"
-  },
-  {
-    value: "F",
-    text: "Female"
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      names: '',
+      rm: '',
+      choice: '',
+      choices: ''
+
+    }
   }
-  ]
 
 
-  var data = {
-    fields: [{
-      type: 'input',
-      name: 'names',
-      inputLabel: "Names",
-      handleData: handleData,
-    },
-    {
-      type: 'select',
-      name: 'choice',
-      inputLabel: "Gender",
-      extras: {
-        options: options
-      }
-    },
-    {
-      type: 'checkboxes',
-      name: 'rm',
-      checkboxesLabel: "Languages:",
-      checkboxes: [
-        {
-          inputLabel: "Java",
-        },
-        {
-          inputLabel: "Javascript",
-        },
-        {
-          inputLabel: "Python",
-        }
-      ]
-    },
-    {
-      type: 'radios',
-      name: 'choice',
-      radiosLabel: 'Are you good: ',
-      radios: [
-        {
-          inputLabel: "Yes",
-        },
-        {
-          inputLabel: "No",
-        }
-      ]
+  handleData = (name, value) => {
+    switch (name) {
+      case "names":
+        this.setState({
+          names: value
+        });
+
+        break;
+
+      case "choice":
+        this.setState({
+          choice: value
+        });
+
+        break;
+
+      case "choices":
+        this.setState({
+          choices: value
+        });
+
+        break;
+      case "rm":
+        this.setState({
+          rm: value
+        });
+
+        break;
+
+      default:
+        break;
     }
 
+    console.log(this.state.names);
+  }
+  render() {
 
+    var options = [{
+      value: "M",
+      text: "Male"
+    },
+    {
+      value: "F",
+      text: "Female"
+    }
     ]
-  }
-  var datas = [];
 
-  function handleData(name, value){
-    var d = {
-      name: name,
-      value: value
+
+    var data = {
+      fields: [{
+        type: 'input',
+        name: 'names',
+        inputLabel: "Names",
+        handleData: this.handleData,
+      },
+      {
+        type: 'select',
+        name: 'choices',
+        inputLabel: "Gender",
+        extras: {
+          options: options
+        }
+      },
+      {
+        type: 'checkboxes',
+        name: 'rm',
+        checkboxesLabel: "Languages:",
+        checkboxes: [
+          {
+            inputLabel: "Java",
+          },
+          {
+            inputLabel: "Javascript",
+          },
+          {
+            inputLabel: "Python",
+          }
+        ]
+      },
+      {
+        type: 'radios',
+        name: 'choice',
+        radiosLabel: 'Are you good: ',
+        radios: [
+          {
+            inputLabel: "Yes",
+          },
+          {
+            inputLabel: "No",
+          }
+        ]
+      }
+
+
+      ]
     }
-    datas.push(d);
-    console.log(datas);
+    return (
+      <div className="col-md-10 offset-1">
+        <FormMaker fields={data} />
+      </div>
+    );
   }
-  return (
-    <div className="col-md-10 offset-1">
-      <FormMaker fields={data} />
-    </div>
-  );
 }
 
 export default App;

@@ -13,11 +13,11 @@ class FormMaker extends React.Component {
                 case 'input': list.push(<Input name={field.name} handleData={field.handleData} inputLabel={field.inputLabel} />)
 
                     break;
-                case 'select': list.push(<Select name={field.name} inputLabel={field.inputLabel} options={field.extras.options} />)
+                case 'select': list.push(<Select name={field.name} handleData={field.handleData} inputLabel={field.inputLabel} options={field.extras.options} />)
                     break;
-                case 'checkboxes': list.push(<CheckBox data={field} />)
+                case 'checkboxes': list.push(<CheckBox data={field} handleData={field.handleData} />)
                     break;
-                case 'radios': list.push(<Radio data={field} />)
+                case 'radios': list.push(<Radio data={field} handleData={field.handleData} />)
                     break;
                 default:
                     break;
