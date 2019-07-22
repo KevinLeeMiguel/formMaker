@@ -4,6 +4,7 @@ import Select from './formComponents/select';
 import CheckBox from './formComponents/checkbox';
 import Radio from './formComponents/radio';
 import Button from './formComponents/button';
+import GroupMaker from './groupMaker';
 
 class FormMaker extends React.Component {
 
@@ -21,6 +22,8 @@ class FormMaker extends React.Component {
                 case 'radios': list.push(<Radio data={field} handleData={field.handleData} />)
                     break;
                 case 'button': list.push(<Button data={field} />)
+                    break;
+                case 'group': list.push(<GroupMaker data={field} />)
                     break;
                 default:
                     break;

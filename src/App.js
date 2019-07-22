@@ -53,10 +53,20 @@ class App extends React.Component {
 
     var data = {
       fields: [{
-        type: 'input',
-        name: 'names',
-        inputLabel: "Names",
-        handleData: this.handleData,
+        type: 'group',
+        fields: [{
+          type: 'input',
+          name: 'firstName',
+          inputLabel: "first name",
+          handleData: this.handleData,
+        },
+        {
+          type: 'input',
+          name: 'lastName',
+          inputLabel: "last name",
+          handleData: this.handleData,
+        }
+        ]
       },
       {
         type: 'input',
