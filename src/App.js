@@ -65,12 +65,15 @@ class App extends React.Component {
         checkboxes: [
           {
             inputLabel: "Java",
+            value:"Java"
           },
           {
             inputLabel: "Javascript",
+            value:"Javascript"
           },
           {
             inputLabel: "Python",
+            value: "Python"
           }
         ]
       },

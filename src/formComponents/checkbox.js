@@ -1,6 +1,19 @@
 import React from 'react';
 
 class Radio extends React.Component {
+
+
+    GetValue = (e) => {
+        var data = [];
+        var li = document.getElementsByName(this.props.data.name);
+        li.forEach(element => {
+            if (element.checked) {
+                data.push(element.value);
+            }
+        });
+        this.props.handleData(this.props.data.name, data);
+    }
+
     render() {
 
         return (
@@ -12,7 +25,7 @@ class Radio extends React.Component {
                             {
                                 this.props.data.checkboxes.map(checkbox =>
                                     <div className="form-check">
-                                        <input type="checkbox" className="form-check-input" name={this.props.data.name} checked={checkbox.checked} />
+                                        <input type="checkbox" className="form-check-input" onBlur={this.GetValue} name={this.props.data.name} value={checkbox.value} checked={checkbox.checked} />
                                         <label className="form-check-label">{checkbox.inputLabel}</label>
                                     </div>
                                 )
