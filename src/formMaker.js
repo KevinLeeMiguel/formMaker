@@ -36,7 +36,7 @@ class FormMaker extends React.Component {
     render() {
         return (
             <div>
-                <form>
+                <form id="form">
                     {this.makeForm()}
                 </form>
             </div >

@@ -16,6 +16,7 @@ class App extends React.Component {
       .then(res => {
         console.log(res)
         alert("success");
+        this.resetForm();
       })
       .catch(err => {
         console.error(err);
@@ -33,6 +34,9 @@ class App extends React.Component {
 
 
 
+  }
+  resetForm = ()=>{
+    document.getElementById("form").reset();
   }
   render() {
 
