@@ -50,7 +50,9 @@ class App extends React.Component {
         break;
     }
 
-    console.log(this.state.names);
+    // console.log(this.state.names);
+    // console.log(this.state.choices);
+    // console.log(this.state.choice);
   }
   render() {
 
@@ -76,6 +78,7 @@ class App extends React.Component {
         type: 'select',
         name: 'choices',
         inputLabel: "Gender",
+        handleData: this.handleData,
         extras: {
           options: options
         }

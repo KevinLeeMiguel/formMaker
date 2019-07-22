@@ -4,7 +4,7 @@ class Input extends React.Component {
 
     GetValue = (e)=>{
         // console.log(e.target.value);
-        this.props.handleData(this.props.name,e.target.value, this.props.inputType);
+        this.props.handleData(this.props.name,e.target.value);
     }
 
     render() {
