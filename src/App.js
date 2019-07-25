@@ -15,13 +15,15 @@ class App extends React.Component {
     var formData = new FormData();
     var p = this.state;
     for (var key in p) {
-      if (p.hasOwnProperty(key)) {
-        formData.append([key], p[key]);
-        console.log(key + " -> " + p[key]);
+      if (key !== "files") {
+        if (p.hasOwnProperty(key)) {
+          formData.append([key], p[key]);
+          console.log(key + " -> " + p[key]);
+        }
       }
     }
     formData.append("file", this.state.files[0]);
-    axios.post("http://localhost:3002/employees/file", formData, {
+    axios.post("http://localhost:9009/employees/save", formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -29,7 +31,7 @@ class App extends React.Component {
       .then(res => {
         console.log(res)
         alert("success");
-        this.resetForm();
+        // this.resetForm();
       })
       .catch(err => {
         console.error(err);
@@ -38,11 +40,11 @@ class App extends React.Component {
   }
 
   submitJSONForm = () => {
-    axios.post("http://localhost:3002/employees/save", this.state)
+    axios.post("http://localhost:9009/employees/json/save", this.state)
       .then(res => {
         console.log(res)
         alert("success");
-        this.resetForm();
+        // this.resetForm();
       })
       .catch(err => {
         console.error(err);
