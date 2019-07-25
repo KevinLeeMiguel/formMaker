@@ -4,7 +4,7 @@ class Button  extends React.Component{
 
     submit = (e)=>{
         e.preventDefault();
-        this.props.data.onClickFunction();
+        this.props.data.onClickFunction(this.props.data.formType);
     }
 
     render(){

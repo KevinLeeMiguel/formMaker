@@ -11,8 +11,21 @@ class App extends React.Component {
     this.state = {}
   }
 
-  submitForm = () => {
-    axios.post("http://localhost:3002/emps/save", this.state)
+  submitFormData = () => {
+    var formData = new FormData();
+    var p = this.state;
+    for (var key in p) {
+      if (p.hasOwnProperty(key)) {
+        formData.append([key], p[key]);
+        console.log(key + " -> " + p[key]);
+      }
+    }
+    formData.append("file", this.state.files[0]);
+    axios.post("http://localhost:3002/employees/file", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
       .then(res => {
         console.log(res)
         alert("success");
@@ -22,6 +35,29 @@ class App extends React.Component {
         console.error(err);
         alert("error occured: " + err);
       })
+  }
+
+  submitJSONForm = () => {
+    axios.post("http://localhost:3002/employees/save", this.state)
+      .then(res => {
+        console.log(res)
+        alert("success");
+        this.resetForm();
+      })
+      .catch(err => {
+        console.error(err);
+        alert("error occured: " + err);
+      })
+  }
+
+  submitForm = (formType) => {
+    if (formType === "formData") {
+      alert("formData");
+      this.submitFormData();
+    } else if (formType === "json") {
+      alert("json");
+      this.submitJSONForm();
+    }
   }
 
   handleData = (name, value) => {
@@ -35,7 +71,7 @@ class App extends React.Component {
 
 
   }
-  resetForm = ()=>{
+  resetForm = () => {
     document.getElementById("form").reset();
   }
   render() {
@@ -56,6 +92,7 @@ class App extends React.Component {
 
 
     var data = {
+      formType: 'formData',
       fields: [{
         type: 'group',
         fields: [{
@@ -69,8 +106,21 @@ class App extends React.Component {
           name: 'lastName',
           inputLabel: "last name",
           handleData: this.handleData,
+        },
+        {
+          type: 'input',
+          name: 'files',
+          inputType: "file",
+          inputLabel: "last name",
+          handleData: this.handleData,
         }
         ]
+      },
+      {
+        type: 'input',
+        name: 'idNumber',
+        inputLabel: 'ID number: ',
+        handleData: this.handleData
       },
       {
         type: 'input',
@@ -111,7 +161,7 @@ class App extends React.Component {
       {
         type: 'radios',
         name: 'choice',
-        radiosLabel: 'Are you good: ',
+        radiosLabel: 'Graduate? : ',
         handleData: this.handleData,
         radios: [
           {
@@ -125,16 +175,29 @@ class App extends React.Component {
         ]
       },
       {
-        type: 'button',
-        buttonType: 'submit',
-        nameLabel: 'Submit',
-        onClickFunction: this.submitForm,
+        type: "group",
+        fields: [
+          {
+            type: 'button',
+            buttonType: 'submit',
+            formType: 'formData',
+            nameLabel: 'Submit Form Data',
+            onClickFunction: this.submitForm,
+          },
+          {
+            type: 'button',
+            buttonType: 'submit',
+            formType: 'json',
+            nameLabel: 'Submit Json',
+            onClickFunction: this.submitForm,
+          },
+        ],
       }
       ]
     }
     return (
       <div>
-        <h1 className="text-center my-4">Employee Registration</h1>
+        <h1 className="text-center text-uppercase my-4">Employee Registration</h1>
         <div className="col-md-10 offset-1 jumbotron">
           <div className="col-md-10 offset-1">
             <FormMaker fields={data} />
