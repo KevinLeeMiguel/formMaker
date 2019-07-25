@@ -54,10 +54,10 @@ class App extends React.Component {
 
   submitForm = (formType) => {
     if (formType === "formData") {
-      alert("formData");
+      // alert("formData");
       this.submitFormData();
     } else if (formType === "json") {
-      alert("json");
+      // alert("json");
       this.submitJSONForm();
     }
   }
